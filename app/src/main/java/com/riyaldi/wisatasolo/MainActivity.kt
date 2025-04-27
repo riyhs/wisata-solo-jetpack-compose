@@ -67,6 +67,7 @@ class MainActivity : ComponentActivity() {
                 val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(
                     rememberTopAppBarState()
                 )
+                val places = PlaceList.placeList
 
                 Scaffold(
                     modifier = Modifier
@@ -90,13 +91,19 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) { innerPadding ->
-                    val places = PlaceList.placeList
-
-                    ListCard(places, modifier = Modifier.padding(innerPadding))
+                    MainScreen(places, modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
+}
+
+@Composable
+fun MainScreen(
+    places: List<Place>,
+    modifier: Modifier = Modifier
+) {
+    ListCard(places, modifier)
 }
 
 @Composable
