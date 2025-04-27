@@ -1,9 +1,12 @@
 package com.riyaldi.wisatasolo
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import coil3.util.CoilUtils.result
 import com.riyaldi.wisatasolo.ui.theme.WisataSoloTheme
 
 class MainActivity : ComponentActivity() {
@@ -143,16 +147,35 @@ fun CardPlace(place: Place, modifier: Modifier = Modifier) {
                         )
                     }
                     Spacer(modifier = modifier.weight(1f))
-                    Button(
-                        modifier = modifier,
-                        onClick = { /* Todo */ }
-                    ) {
-                        Text("Detail")
-                    }
+                    DetailButton(place.id)
                 }
             }
 
         }
+    }
+}
+
+@Composable
+fun DetailButton(
+    placeId: Int,
+    modifier: Modifier = Modifier
+) {
+    val context = LocalContext.current
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) {  }
+
+    Button(
+        modifier = modifier,
+        onClick = {
+            val intent = Intent(context, DetailActivity::class.java).apply {
+                putExtra("PLACE_ID", placeId)
+            }
+            launcher.launch(intent)
+        }
+    ) {
+        Text("Detail")
     }
 }
 

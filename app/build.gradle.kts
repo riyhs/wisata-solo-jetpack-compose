@@ -54,6 +54,12 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
 
+    // navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // material 3
+    implementation(libs.material3)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
