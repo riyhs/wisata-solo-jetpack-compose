@@ -50,15 +50,14 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
 
-    // navigation
     implementation(libs.androidx.navigation.compose)
 
-    // material 3
     implementation(libs.material3)
+
+    implementation(libs.androidx.ui.text.google.fonts)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

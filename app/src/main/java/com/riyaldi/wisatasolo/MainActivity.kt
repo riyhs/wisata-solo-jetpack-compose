@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -69,7 +70,8 @@ class MainActivity : ComponentActivity() {
                                 Text(
                                     text = "Wisata Solo",
                                     maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
+                                    overflow = TextOverflow.Ellipsis,
+                                    fontFamily = MaterialTheme.typography.displaySmall.fontFamily
                                 )
                             },
                             scrollBehavior = scrollBehavior
@@ -135,19 +137,25 @@ fun CardPlace(place: Place, modifier: Modifier = Modifier) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Column(
-                        modifier = modifier
+                        modifier = modifier.weight(0.7f)
                     ) {
                         Text(
-                            modifier = modifier,
+                            modifier = modifier.padding(bottom = 4.dp),
                             text = place.name,
+                            fontFamily = MaterialTheme.typography.displaySmall.fontFamily,
+                            fontWeight = FontWeight(600),
+                            fontSize = MaterialTheme.typography.bodyLarge.fontSize
                         )
                         Text(
                             modifier = modifier,
                             text = place.location,
+                            fontSize = MaterialTheme.typography.bodyMedium.fontSize
                         )
                     }
-                    Spacer(modifier = modifier.weight(1f))
-                    DetailButton(place.id)
+                    DetailButton(
+                        place.id,
+                        modifier = modifier.weight(0.3f)
+                    )
                 }
             }
 
