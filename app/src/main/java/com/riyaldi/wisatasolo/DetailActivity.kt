@@ -52,6 +52,8 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.riyaldi.wisatasolo.ui.theme.WisataSoloTheme
 import androidx.core.net.toUri
+import com.riyaldi.wisatasolo.data.PlaceList
+import com.riyaldi.wisatasolo.model.Place
 
 class DetailActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)

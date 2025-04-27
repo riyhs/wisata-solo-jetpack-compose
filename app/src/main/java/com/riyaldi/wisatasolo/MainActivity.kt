@@ -45,6 +45,8 @@ import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
 import coil3.util.CoilUtils.result
+import com.riyaldi.wisatasolo.data.PlaceList
+import com.riyaldi.wisatasolo.model.Place
 import com.riyaldi.wisatasolo.ui.theme.WisataSoloTheme
 
 class MainActivity : ComponentActivity() {
