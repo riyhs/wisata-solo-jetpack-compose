@@ -12,13 +12,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -46,7 +44,6 @@ import androidx.lifecycle.lifecycleScope
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import coil3.util.CoilUtils.result
 import com.riyaldi.wisatasolo.data.PlaceList
 import com.riyaldi.wisatasolo.model.Place
 import com.riyaldi.wisatasolo.ui.theme.WisataSoloTheme
@@ -104,7 +101,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun ListCard(places: List<Place>, modifier: Modifier = Modifier) {
-    LazyColumn (
+    LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp),
@@ -124,7 +121,7 @@ fun CardPlace(place: Place, modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(4.dp),
     ) {
         Box {
-            SubcomposeAsyncImage (
+            SubcomposeAsyncImage(
                 modifier = modifier
                     .fillMaxWidth()
                     .height(250.dp),
@@ -134,7 +131,7 @@ fun CardPlace(place: Place, modifier: Modifier = Modifier) {
                     .build(),
                 contentScale = ContentScale.Crop,
                 loading = {
-                    Box (
+                    Box(
                         modifier = modifier
                             .fillMaxSize(),
                     ) {
@@ -196,7 +193,7 @@ fun DetailButton(
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
-    ) {  }
+    ) { }
 
     Button(
         modifier = modifier,

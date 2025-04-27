@@ -1,7 +1,6 @@
 package com.riyaldi.wisatasolo
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -33,13 +31,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.carousel.HorizontalMultiBrowseCarousel
-import androidx.compose.material3.carousel.HorizontalUncontainedCarousel
 import androidx.compose.material3.carousel.rememberCarouselState
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -47,13 +43,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import coil3.compose.SubcomposeAsyncImage
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.riyaldi.wisatasolo.ui.theme.WisataSoloTheme
-import androidx.core.net.toUri
 import com.riyaldi.wisatasolo.data.PlaceList
 import com.riyaldi.wisatasolo.model.Place
+import com.riyaldi.wisatasolo.ui.theme.WisataSoloTheme
 
 class DetailActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -81,32 +77,32 @@ class DetailActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                         .nestedScroll(scrollBehavior.nestedScrollConnection),
-                        topBar = {
-                            CenterAlignedTopAppBar(
-                                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                                    titleContentColor = MaterialTheme.colorScheme.primary
-                                ),
-                                title = {
-                                    Text(
-                                        text = place.name,
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
+                    topBar = {
+                        CenterAlignedTopAppBar(
+                            colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+                                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                                titleContentColor = MaterialTheme.colorScheme.primary
+                            ),
+                            title = {
+                                Text(
+                                    text = place.name,
+                                    maxLines = 1,
+                                    overflow = TextOverflow.Ellipsis
+                                )
+                            },
+                            navigationIcon = {
+                                IconButton(onClick = {
+                                    finish()
+                                }) {
+                                    Icon(
+                                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                        contentDescription = "Up Button"
                                     )
-                                },
-                                navigationIcon = {
-                                    IconButton(onClick = {
-                                        finish()
-                                    }) {
-                                        Icon(
-                                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                            contentDescription = "Up Button"
-                                        )
-                                    }
-                                },
-                                scrollBehavior = scrollBehavior
-                            )
-                        }
+                                }
+                            },
+                            scrollBehavior = scrollBehavior
+                        )
+                    }
                 ) { innerPadding ->
                     DetailScreen(
                         place = place,
@@ -125,7 +121,7 @@ fun DetailScreen(
     scrollState: ScrollState,
     modifier: Modifier = Modifier
 ) {
-    Column (
+    Column(
         modifier = modifier.verticalScroll(state = scrollState)
     ) {
         // HeaderImage
@@ -157,7 +153,7 @@ fun HeaderImage(
     place: Place,
     modifier: Modifier = Modifier
 ) {
-    SubcomposeAsyncImage (
+    SubcomposeAsyncImage(
         modifier = modifier
             .fillMaxWidth()
             .height(350.dp),
@@ -248,7 +244,7 @@ fun CarouselImage(
     url: String,
     modifier: Modifier = Modifier
 ) {
-    SubcomposeAsyncImage (
+    SubcomposeAsyncImage(
         modifier = modifier
             .height(200.dp),
         model = ImageRequest.Builder(LocalContext.current)
@@ -257,7 +253,7 @@ fun CarouselImage(
             .build(),
         contentScale = ContentScale.FillBounds,
         loading = {
-            Box (
+            Box(
                 modifier = modifier
                     .fillMaxSize(),
             ) {
@@ -279,7 +275,7 @@ fun OpenMapButton(
 ) {
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
-    ) {  }
+    ) { }
 
     Button(
         modifier = modifier
