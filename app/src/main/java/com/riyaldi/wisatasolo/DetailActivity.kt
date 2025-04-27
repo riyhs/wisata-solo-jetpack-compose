@@ -124,26 +124,15 @@ fun DetailScreen(
     Column(
         modifier = modifier.verticalScroll(state = scrollState)
     ) {
-        // HeaderImage
         HeaderImage(place)
 
-        // Place Name Title
-        // Place location
         DetailTitle(place)
 
-        // Open Days
-        // Open Time
-        // Ticket Price & Rating
-
-        // Description
         PlaceDescription(place.description)
 
-        // Image Gallery
         CarouselGallery(place)
 
-        // Map View
         OpenMapButton(place)
-        // Floating Action Button Share (optional)
     }
 
 }
